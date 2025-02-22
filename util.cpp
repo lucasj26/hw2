@@ -16,14 +16,30 @@ std::string convToLower(std::string src)
 std::set<std::string> parseStringToWords(string rawWords)
 {
 
+    std::set<string> kw;
 
+    rawWords = convToLower(rawWords);
+    rawWords = trim(rawWords);
+    
+    std::string curr;
 
+    for (char c : rawWords){
+        if(isalpha(c) || isdigit(c)){
+            curr += c;
+        }
+        else{
+            if(curr.length()>=2){
+                kw.insert(curr);
+            }
+            curr.clear();
+        }
+    }
+    
+    if(curr.length()>=2){
+        kw.insert(curr);
+    }
 
-
-
-
-
-
+    return kw;
 
 }
 
